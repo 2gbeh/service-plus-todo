@@ -1,4 +1,3 @@
-import { useTodo } from "@/features/todo";
 import {
   PropsWithChildren,
   Dispatch,
@@ -10,39 +9,56 @@ import {
   useCallback,
   useEffect,
 } from "react";
-
-type TodoType = "light" | "dark";
+import { TodoEntity } from "@/features/todo/utils/todo.types";
+import { mockApiCall } from "@/utils/mockApiCall";
 
 interface ITodoContext {
-  theme: TodoType;
-  setTodo: Dispatch<SetStateAction<TodoType>>;
-  toggleTodo: () => void;
+  todos: TodoEntity[];
+  createTaskMutation: (task: string) => void;
+  creating: boolean;
+  created: boolean;
 }
 
 const TodoContext = createContext<ITodoContext | undefined>(undefined);
 
 export function useTodoContext() {
-  const themeContext = useContext(TodoContext);
-
-  if (themeContext === undefined) {
+  const todoContext = useContext(TodoContext);
+  if (todoContext === undefined) {
     throw new Error(
       "ContextError: useTodoContext can only be used within TodoContextProvider"
     );
   }
-
-  return themeContext;
+  return todoContext;
 }
 
 export const TodoContextProvider: React.FC<PropsWithChildren> = ({
   children,
 }) => {
-  const [theme, setTodo] = useState<TodoType>("light");
-  const {} = useTodo();
+  const [todos, setTodos] = useState<TodoEntity[]>([]);
+  const [creating, setCreating] = useState(false);
+  const [created, setCreated] = useState(false);
 
-  const toggleTodo = () =>
-    setTodo((prev) => (prev === "light" ? "dark" : "light"));
+  async function createTaskMutation(task: string) {
+    setCreating(true);
+    //
+    const d = new Date();
+    const body = {
+      id: d.getTime(),
+      done: false,
+      created_at: d.toISOString(),
+      task,
+    };
+    await mockApiCall();
+    //
+    setTodos((prev) => [body, ...prev]);
+    setCreating(false);
+    setCreated(true);
+  }
 
-  const value = useMemo(() => ({ theme, setTodo, toggleTodo }), [theme]);
+  const value = useMemo(
+    () => ({ todos, createTaskMutation, creating, created }),
+    [creating]
+  );
 
   console.log("🚀 ~ TodoContextProvider");
   // RENDER

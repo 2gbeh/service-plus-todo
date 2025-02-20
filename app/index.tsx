@@ -3,7 +3,6 @@ import { SafeAreaView } from "react-native-safe-area-context";
 //
 import { TodoContextProvider } from "@/context/TodoContext";
 import {
-  useTodo,
   todoStyles as s,
   SearchBar,
   Notifications,
@@ -13,8 +12,7 @@ import {
 } from "@/features/todo";
 
 export default function HomeScreen() {
-  const { todos } = useTodo();
-  console.log("🚀 ~ HomeScreen", todos);
+  console.log("🚀 ~ HomeScreen");
   // RENDER
   return (
     <TodoContextProvider>
@@ -28,7 +26,7 @@ export default function HomeScreen() {
         {/* NAV */}
         <Filters />
         {/* MAIN */}
-        <TodoList data={todos} />
+        <TodoList />
         {/* FOOTER */}
         <Footer />
       </SafeAreaView>

@@ -1,22 +1,24 @@
 import React from "react";
 import { View, Text, FlatList } from "react-native";
 //
+import { useTodoContext } from "@/context/TodoContext";
 import { DeleteOutlineIcon, SearchActivityIcon } from "@/constants/ICON";
 import { COLOR } from "@/constants/COLOR";
 import { TodoEntity } from "../../utils/todo.types";
 import { todoListStyles as s } from "./styles";
 
-type PropsType = { data?: TodoEntity[] };
+type PropsType = {};
 
-const TodoList: React.FC<PropsType> = ({ data }) => {
-  console.log("🚀 ~ TodoList");
+const TodoList: React.FC<PropsType> = () => {
+  const { todos } = useTodoContext();
+  console.log("🚀 ~ TodoList", todos);
   // RENDER
   return (
     <FlatList
-      data={data}
+      data={todos}
       keyExtractor={(item) => String(item.id)}
       ListEmptyComponent={renderNoData}
-      ListHeaderComponent={() => renderListHeader(data?.length)}
+      ListHeaderComponent={() => renderListHeader(todos?.length)}
       renderItem={renderListItem}
       ItemSeparatorComponent={() => <View style={s.static.separator} />}
       contentContainerStyle={s.static.container}
@@ -49,8 +51,8 @@ const renderListItem = ({
 }) => (
   <View style={s.card().transform}>
     <View style={s.static.cardWrapper}>
-      <Text style={s.static.title}>{item.title}</Text>
-      <Text style={s.static.subtitle}>Created today</Text>
+      <Text style={s.static.title}>{item.task}</Text>
+      <Text style={s.static.subtitle}>Created {item.created_at}</Text>
     </View>
     <DeleteOutlineIcon width={18} color={COLOR.icon} />
   </View>

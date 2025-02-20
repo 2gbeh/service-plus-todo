@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { View, TextInput, Pressable } from "react-native";
+import { View, TextInput, Pressable, ActivityIndicator } from "react-native";
 //
-import { useTodoContext } from "../TodoContext";
+import { useTodoContext } from "@/context/TodoContext";
 import { MoodOutlineIcon, SendIcon } from "@/constants/ICON";
 import { COLOR } from "@/constants/COLOR";
 import { footerStyles as s } from "./styles";
@@ -9,8 +9,8 @@ import { footerStyles as s } from "./styles";
 type PropsType = {};
 
 const Footer: React.FC<PropsType> = () => {
-  const { createTaskMutation, created } = useTodoContext();
-  const [task, setTask] = useState<string | undefined>();
+  const { createTaskMutation, creating, created } = useTodoContext();
+  const [task, setTask] = useState<string>("");
   function handleSubmit() {
     if (task && task.length >= 3) createTaskMutation(task);
   }
@@ -29,14 +29,14 @@ const Footer: React.FC<PropsType> = () => {
           onChangeText={(value) => setTask(value)}
           placeholder="Enter task"
           placeholderTextColor={COLOR.mutedText}
+          editable={!creating}
           returnKeyLabel="Add"
           enablesReturnKeyAutomatically
-          multiline
           style={s.static.input}
         />
       </View>
       <Pressable onPress={handleSubmit}>
-        <SendIcon color={COLOR.white} />
+        {creating ? <ActivityIndicator /> : <SendIcon color={COLOR.white} />}
       </Pressable>
     </View>
   );
