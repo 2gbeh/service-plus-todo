@@ -19,6 +19,7 @@ import {
   SendIcon,
 } from "@/constants/ICON";
 import fakeTodos from "@/data/fakeTodos.json";
+import AppBar from "@/features/todo/components/app-bar";
 
 interface TodoEntity {
   userId: number;
@@ -48,28 +49,7 @@ export default function HomeScreen() {
   // RENDER
   return (
     <SafeAreaView style={s.container}>
-      {/* HEADER */}
-      <View style={s.appBar}>
-        {/* LOGO */}
-        <Image source={require("@/assets/images/icon.png")} style={s.logo} />
-        {/* SEARCH */}
-        <View style={{ flex: 1 }}>
-          <SearchIcon style={s.searchBarIcon} />
-          <TextInput
-            style={s.searchBarInput}
-            placeholder="Search ( / )"
-            placeholderTextColor="#888"
-          />
-        </View>
-        {/* NOTIFICATIONS */}
-        <View style={s.notificationsContainer}>
-          <View>
-            <NotificationsIcon />
-            <View style={s.notificationsIndicator} />
-          </View>
-        </View>
-      </View>
-      {/* NAV */}
+      <AppBar />
 
       {/* MAIN */}
       <FlatList
@@ -87,7 +67,7 @@ export default function HomeScreen() {
             </View>
             {/* TOTALED */}
             <Text style={{ fontWeight: 600, fontSize: 16, color: "#555" }}>
-              Total {todos?.length - 10}
+              Total {todos?.length}
             </Text>
           </View>
         )}
