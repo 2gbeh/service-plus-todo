@@ -13,6 +13,7 @@ import {
   SearchIcon,
   NotificationsIcon,
   DeleteOutlineIcon,
+  MoodOutlineIcon,
 } from "@/constants/ICON";
 import fakeTodos from "@/data/fakeTodos.json";
 
@@ -47,10 +48,10 @@ export default function HomeScreen() {
       {/* HEADER */}
       <View style={s.appBar}>
         {/* LOGO */}
-        <Image source={require("@/assets/icon.png")} style={s.logo} />
+        <Image source={require("@/assets/images/icon.png")} style={s.logo} />
         {/* SEARCH */}
         <View style={{ flex: 1 }}>
-          <SearchIcon style={s.searchBarIcon} color="#999" />
+          <SearchIcon style={s.searchBarIcon} />
           <TextInput
             style={s.searchBarInput}
             placeholder="Search ( / )"
@@ -80,11 +81,14 @@ export default function HomeScreen() {
       />
       {/* FOOTER */}
       <View style={s.footer}>
-        <TextInput
-          style={s.searchBarInput}
-          placeholder="Search ( / )"
-          placeholderTextColor="#888"
-        />
+        <View style={s.footerWrapper}>
+          <MoodOutlineIcon style={s.footerIcon} />
+          <TextInput
+            style={s.searchBarInput}
+            placeholder="Add task"
+            placeholderTextColor="#888"
+          />
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -100,10 +104,6 @@ const s = StyleSheet.create({
     paddingHorizontal: 16,
     flex: 1,
   },
-  footer: {
-    backgroundColor: "red",
-    padding: 16,
-  },
   appBar: {
     backgroundColor: "black",
     padding: 16,
@@ -117,6 +117,7 @@ const s = StyleSheet.create({
     width: 40,
   },
   searchBarIcon: {
+    color: "#999",
     position: "absolute",
     top: 8,
     left: 10,
@@ -159,5 +160,18 @@ const s = StyleSheet.create({
   listItemSeparator: {
     borderColor: "#ddd",
     borderWidth: 1,
+  },
+  footer: {
+    backgroundColor: "red",
+    padding: 16,
+  },
+  footerWrapper: {
+    flex: 1,
+  },
+  footerIcon: {
+    color: "#999",
+    position: "absolute",
+    top: 8,
+    left: 10,
   },
 });
