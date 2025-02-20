@@ -1,25 +1,14 @@
 import { useEffect, useState } from "react";
-import {
-  StyleSheet,
-  Image,
-  View,
-  TextInput,
-  Text,
-  FlatList,
-} from "react-native";
+import { StyleSheet, Image, View, Text, FlatList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { format } from "date-fns";
 //
-import {
-  SearchIcon,
-  NotificationsIcon,
-  DeleteOutlineIcon,
-  MoodOutlineIcon,
-  SendOutlineIcon,
-  SendIcon,
-} from "@/constants/ICON";
+import Footer from "@/features/todo/components/footer";
+import { DeleteOutlineIcon } from "@/constants/ICON";
 import fakeTodos from "@/data/fakeTodos.json";
-import AppBar from "@/features/todo/components/app-bar";
+import { SearchBar, Notifications, Footer } from "@/features/todo";
+import { COLOR } from "@/constants/COLOR";
+import { flexStyles } from "@/styles/flex.styles";
 
 interface TodoEntity {
   userId: number;
@@ -49,8 +38,12 @@ export default function HomeScreen() {
   // RENDER
   return (
     <SafeAreaView style={s.container}>
-      <AppBar />
-
+      {/* HEADER */}
+      <View style={s.appBar}>
+        <Image source={require("@/assets/images/icon.png")} style={s.logo} />
+        <SearchBar />
+        <Notifications />
+      </View>
       {/* MAIN */}
       <FlatList
         data={todos}
@@ -96,17 +89,7 @@ export default function HomeScreen() {
         contentContainerStyle={s.listContainer}
       />
       {/* FOOTER */}
-      <View style={s.footer}>
-        <View style={s.footerWrapper}>
-          <MoodOutlineIcon style={s.footerIcon} />
-          <TextInput
-            style={s.searchBarInput}
-            placeholder="Add task"
-            placeholderTextColor="#888"
-          />
-          <SendOutlineIcon style={s.footerIconRight} />
-        </View>
-      </View>
+      <Footer />
     </SafeAreaView>
   );
 }
@@ -121,57 +104,17 @@ const s = StyleSheet.create({
     paddingHorizontal: 16,
     flex: 1,
   },
-  appBar: {
-    // backgroundColor: "black",
-    borderColor: "#ddd",
+  header: {
+    borderColor: COLOR.border,
     borderBottomWidth: 1,
     padding: 16,
-
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
+    ...flexStyles.flexRowCenterBetween,
     columnGap: 16,
   },
   logo: {
-    height: 40,
-    width: 40,
     borderRadius: 8,
-  },
-  searchBarIcon: {
-    color: "#999",
-    position: "absolute",
-    top: 8,
-    left: 10,
-  },
-  searchBarInput: {
-    backgroundColor: "white",
-    borderColor: "#ccc",
-    borderWidth: 1,
-    borderRadius: 100,
-    paddingLeft: 40,
-    paddingRight: 20,
     height: 40,
-  },
-  notificationsContainer: {
-    backgroundColor: "white",
-    borderColor: "#ddd",
-    borderWidth: 1,
-    borderRadius: 100,
     width: 40,
-    height: 40,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  notificationsIndicator: {
-    backgroundColor: "red",
-    borderColor: "white",
-    borderWidth: 2,
-    borderRadius: 100,
-    width: 10,
-    height: 10,
-    position: "absolute",
-    top: 0,
-    right: 0,
   },
   nav: {
     // paddingHorizontal: 16,
@@ -225,27 +168,5 @@ const s = StyleSheet.create({
     // borderColor: "#ddd",
     // borderWidth: 1,
     marginVertical: 8,
-  },
-  footer: {
-    backgroundColor: "black",
-    borderColor: "#eee",
-    borderTopWidth: 1,
-    paddingVertical: 8,
-    paddingHorizontal: 16,
-  },
-  footerWrapper: {
-    flex: 1,
-  },
-  footerIcon: {
-    color: "#999",
-    position: "absolute",
-    top: 8,
-    left: 10,
-  },
-  footerIconRight: {
-    color: "#999",
-    position: "absolute",
-    top: 8,
-    right: 10,
   },
 });
