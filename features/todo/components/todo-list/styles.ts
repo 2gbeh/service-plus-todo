@@ -7,11 +7,26 @@ export const todoListStyles = {
   static: StyleSheet.create({
     container: {
       backgroundColor: COLOR.offWhite,
-      padding: 16,
+      paddingHorizontal: 16,
+      flex: 1,
     },
     cardWrapper: {
       flex: 1,
       rowGap: 4,
+    },
+    header: {
+      marginBottom: 16,
+      ...flexStyles.flexRowCenterBetween,
+    },
+    heading: {
+      color: COLOR.black,
+      fontWeight: 600,
+      fontSize: 16,
+    },
+    total: {
+      color: COLOR.subText,
+      fontWeight: 600,
+      fontSize: 14,
     },
     title: {
       color: COLOR.black,
@@ -24,6 +39,15 @@ export const todoListStyles = {
     },
     separator: {
       marginVertical: 8,
+    },
+    noDataContainer: {
+      ...flexStyles.flexCenterCenter,
+      flex: 1,
+      rowGap: 8,
+    },
+    noDataText: {
+      color: COLOR.subText,
+      fontSize: 16,
     },
   }),
   card: (pending?: boolean) =>

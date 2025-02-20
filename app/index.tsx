@@ -6,6 +6,7 @@ import {
   todoStyles as s,
   SearchBar,
   Notifications,
+  Filters,
   TodoList,
   Footer,
 } from "@/features/todo";
@@ -22,6 +23,8 @@ export default function HomeScreen() {
         <SearchBar />
         <Notifications />
       </View>
+      {/* NAV */}
+      <Filters />
       {/* MAIN */}
       <TodoList data={todos} />
       {/* FOOTER */}

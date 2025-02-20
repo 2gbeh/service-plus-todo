@@ -5,6 +5,7 @@ export { default as MoodOutlineIcon } from "../assets/icons/mood-outline.svg";
 export { default as MoodIcon } from "../assets/icons/mood.svg";
 export { default as NotificationsOutlineIcon } from "../assets/icons/notifications-outline.svg";
 export { default as NotificationsIcon } from "../assets/icons/notifications.svg";
+export { default as SearchActivityIcon } from "../assets/icons/search-activity.svg";
 export { default as SearchIcon } from "../assets/icons/search.svg";
 export { default as SendOutlineIcon } from "../assets/icons/send-outline.svg";
 export { default as SendIcon } from "../assets/icons/send.svg";

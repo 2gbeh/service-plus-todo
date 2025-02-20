@@ -25,6 +25,8 @@ export const footerStyles = {
       paddingLeft: 40,
       paddingRight: 20,
       height: 40,
+      fontSize: 16,
+      // fontWeight: 600,
     },
   }),
   icon: (right?: boolean) =>

@@ -19,5 +19,6 @@ export const searchBarStyles = StyleSheet.create({
     paddingLeft: 40,
     paddingRight: 20,
     height: 40,
+    // fontSize: 16,
   },
 });
