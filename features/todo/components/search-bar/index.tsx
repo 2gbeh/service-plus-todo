@@ -14,9 +14,10 @@ const SearchBar: React.FC<PropsType> = () => {
     <View style={s.container}>
       <SearchIcon style={s.icon} />
       <TextInput
-        style={s.input}
+        inputMode="search"
         placeholder="Search ( / )"
         placeholderTextColor={COLOR.mutedText}
+        style={s.input}
       />
     </View>
   );
