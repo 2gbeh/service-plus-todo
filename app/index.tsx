@@ -8,6 +8,7 @@ import {
   FlatList,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { format } from "date-fns";
 //
 import {
   SearchIcon,
@@ -69,21 +70,39 @@ export default function HomeScreen() {
         </View>
       </View>
       {/* NAV */}
-      <View style={s._}>
-        <View style={s._}>
-          <Text style={s._}>All</Text>
+      <View style={s.nav}>
+        <View style={s.tabs}>
+          <View style={s.tabActive}>
+            <Text style={s.tabActiveText}>All</Text>
+          </View>
+          <View style={s.tab}>
+            <Text style={s.tabText}>Completed</Text>
+          </View>
         </View>
-        <View style={s._}>
-          <Text style={s._}>Done</Text>
-        </View>
+        {/* TOTALED */}
+        <Text style={{ fontWeight: 600 }}>Total {todos?.length}</Text>
       </View>
       {/* MAIN */}
       <FlatList
         data={todos}
         keyExtractor={(item) => String(item.id)}
-        renderItem={({ item }) => (
+        renderItem={({ item, index }) => (
           <View style={s.listItem}>
-            <Text>{item.title}</Text>
+            <View style={{ flex: 1 }}>
+              <Text>
+                {/* {index + 1}.  */}
+                {item.title}
+              </Text>
+              <Text style={{ fontSize: 12, color: "#555" }}>
+                Created{" "}
+                {[
+                  format(new Date(), "h:mm a"),
+                  "Yesterday",
+                  "Yesterday",
+                  "Yesterday",
+                ][index] ?? format(new Date(), "M/d/yy")}
+              </Text>
+            </View>
             <DeleteOutlineIcon width={18} color="#e11" />
           </View>
         )}
@@ -165,6 +184,37 @@ const s = StyleSheet.create({
     top: 0,
     right: 0,
   },
+  nav: {
+    paddingHorizontal: 16,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  tabs: {
+    flexDirection: "row",
+    alignItems: "center",
+    columnGap: 8,
+  },
+  tab: {
+    backgroundColor: "#ddd",
+    paddingVertical: 4,
+    paddingHorizontal: 12,
+    borderRadius: 100,
+  },
+  tabText: {
+    color: "#555",
+    fontSize: 12,
+  },
+  tabActive: {
+    backgroundColor: "#000",
+    paddingVertical: 4,
+    paddingHorizontal: 12,
+    borderRadius: 100,
+  },
+  tabActiveText: {
+    color: "#fff",
+    fontSize: 12,
+  },
   listContainer: {
     // backgroundColor: "#fafafa",
     padding: 16,
@@ -177,7 +227,7 @@ const s = StyleSheet.create({
     paddingVertical: 16,
     paddingHorizontal: 16,
     flexDirection: "row",
-    alignItems: "center",
+    // alignItems: "center",
     justifyContent: "space-between",
   },
   listItemSeparator: {
