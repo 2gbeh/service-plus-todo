@@ -1,3 +1,4 @@
+export { default as CloseIcon } from "../assets/icons/close.svg";
 export { default as DeleteOutlineIcon } from "../assets/icons/delete-outline.svg";
 export { default as DeleteIcon } from "../assets/icons/delete.svg";
 export { default as MoodOutlineIcon } from "../assets/icons/mood-outline.svg";

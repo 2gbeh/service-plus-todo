@@ -16,7 +16,7 @@ export const filtersStyles = {
     totaled: {
       color: COLOR.subText,
       fontWeight: 600,
-      fontSize: 16,
+      fontSize: 14,
     },
   }),
   tab: (active?: boolean) =>

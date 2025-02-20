@@ -1,49 +1,44 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, FlatList } from "react-native";
 import { format } from "date-fns";
 //
 import Filters from "../filters";
-import { DeleteOutlineIcon } from "@/constants/ICON";
+import { DeleteOutlineIcon, CloseIcon } from "@/constants/ICON";
+import { COLOR } from "@/constants/COLOR";
 import { TodoEntity } from "../../utils/todo.types";
 import { todoListStyles as s } from "./styles";
 
 type PropsType = { data?: TodoEntity[] };
 
-const TodoList: React.FC<PropsType> = ({ total = 0 }) => {
+const TodoList: React.FC<PropsType> = ({ data }) => {
   console.log("🚀 ~ TodoList");
   // RENDER
   return (
     <FlatList
-      data={todos}
+      data={data}
       keyExtractor={(item) => String(item.id)}
-      ListHeaderComponent={<Filters total={todos?.length} />}
-      renderItem={(renderListItem}
-      ItemSeparatorComponent={() => <View style={s.listItemSeparator} />}
-      contentContainerStyle={s.listContainer}
+      ListHeaderComponent={<Filters total={data?.length} />}
+      renderItem={renderListItem}
+      ItemSeparatorComponent={() => <View style={s.static.separator} />}
+      contentContainerStyle={s.static.container}
     />
   );
 };
 
 export default React.memo(TodoList);
 
-const renderListItem = () => (
-  <View style={s.listItem}>
-    <View style={{ flex: 1, rowGap: 4 }}>
-      <Text style={{ fontWeight: 600, fontSize: 16 }}>
-        {/* {index + 1}.  */}
-        {item.title}
-      </Text>
-      <Text style={{ fontSize: 14, color: "#555" }}>
-        Created{" "}
-        {[
-          format(new Date(), "h:mm a"),
-          format(new Date(), "h:mm a"),
-          "Yesterday",
-          "Yesterday",
-          "Yesterday",
-        ][index] ?? format(new Date(), "M/d/yy")}
-      </Text>
+const renderListItem = ({
+  item,
+  index,
+}: {
+  item: TodoEntity;
+  index: string | number;
+}) => (
+  <View style={s.card().transform}>
+    <View style={s.static.cardWrapper}>
+      <Text style={s.static.title}>{item.title}</Text>
+      <Text style={s.static.subtitle}>Created today</Text>
     </View>
-    <DeleteOutlineIcon width={18} color="#e11" />
+    <DeleteOutlineIcon width={18} color={COLOR.icon} />
   </View>
 );
