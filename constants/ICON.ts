@@ -8,3 +8,4 @@ export { default as NotificationsIcon } from "../assets/icons/notifications.svg"
 export { default as SearchIcon } from "../assets/icons/search.svg";
 export { default as SendOutlineIcon } from "../assets/icons/send-outline.svg";
 export { default as SendIcon } from "../assets/icons/send.svg";
+export { default as TaskAltIcon } from "../assets/icons/task-alt.svg";

@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, FlatList } from "react-native";
 //
 import Filters from "../filters";
-import { DeleteOutlineIcon, CloseIcon } from "@/constants/ICON";
+import { DeleteOutlineIcon, TaskAltIcon } from "@/constants/ICON";
 import { COLOR } from "@/constants/COLOR";
 import { TodoEntity } from "../../utils/todo.types";
 import { todoListStyles as s } from "./styles";

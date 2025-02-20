@@ -8,4 +8,5 @@ export const COLOR = {
   subText: "#555",
   mutedText: "#888",
   mutedButton: "#ddd",
+  error: "#e11",
 } as const;

@@ -9,7 +9,7 @@ export const footerStyles = {
       backgroundColor: COLOR.black,
       borderColor: COLOR.border,
       borderTopWidth: 1,
-      paddingVertical: 16,
+      paddingVertical: 8,
       paddingHorizontal: 16,
       ...flexStyles.flexRowCenterBetween,
       columnGap: 8,

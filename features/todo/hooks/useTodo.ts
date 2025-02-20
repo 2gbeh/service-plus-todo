@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { format } from "date-fns";
-// 
+//
 import fakeTodos from "@/data/fakeTodos.json";
 import { TodoEntity } from "../utils/todo.types";
 
@@ -8,6 +8,7 @@ export function useTodo() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<unknown>(null);
   const [todos, setTodos] = useState<TodoEntity[] | undefined>(fakeTodos);
+  //
   async function getTodosQuery() {
     const url = process.env.EXPO_PUBLIC_API_URL + "/todos";
     fetch(url)
@@ -18,6 +19,7 @@ export function useTodo() {
         setLoading(false);
       });
   }
+  //
   useEffect(() => {
     // getTodosQuery();
   }, []);
