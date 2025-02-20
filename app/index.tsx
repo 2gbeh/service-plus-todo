@@ -14,6 +14,8 @@ import {
   NotificationsIcon,
   DeleteOutlineIcon,
   MoodOutlineIcon,
+  SendOutlineIcon,
+  SendIcon,
 } from "@/constants/ICON";
 import fakeTodos from "@/data/fakeTodos.json";
 
@@ -66,6 +68,15 @@ export default function HomeScreen() {
           </View>
         </View>
       </View>
+      {/* NAV */}
+      <View style={s._}>
+        <View style={s._}>
+          <Text style={s._}>All</Text>
+        </View>
+        <View style={s._}>
+          <Text style={s._}>Done</Text>
+        </View>
+      </View>
       {/* MAIN */}
       <FlatList
         data={todos}
@@ -88,6 +99,7 @@ export default function HomeScreen() {
             placeholder="Add task"
             placeholderTextColor="#888"
           />
+          <SendOutlineIcon style={s.footerIconRight} />
         </View>
       </View>
     </SafeAreaView>
@@ -97,7 +109,7 @@ export default function HomeScreen() {
 const s = StyleSheet.create({
   _: {},
   container: {
-    backgroundColor: "white",
+    backgroundColor: "#fafafa",
     flex: 1,
   },
   content: {
@@ -105,7 +117,7 @@ const s = StyleSheet.create({
     flex: 1,
   },
   appBar: {
-    backgroundColor: "black",
+    // backgroundColor: "black",
     padding: 16,
     flexDirection: "row",
     alignItems: "center",
@@ -115,6 +127,7 @@ const s = StyleSheet.create({
   logo: {
     height: 40,
     width: 40,
+    borderRadius: 8,
   },
   searchBarIcon: {
     color: "#999",
@@ -124,6 +137,8 @@ const s = StyleSheet.create({
   },
   searchBarInput: {
     backgroundColor: "white",
+    borderColor: "#ccc",
+    borderWidth: 1,
     borderRadius: 100,
     paddingLeft: 40,
     paddingRight: 20,
@@ -131,6 +146,8 @@ const s = StyleSheet.create({
   },
   notificationsContainer: {
     backgroundColor: "white",
+    borderColor: "#ddd",
+    borderWidth: 1,
     borderRadius: 100,
     width: 40,
     height: 40,
@@ -149,21 +166,31 @@ const s = StyleSheet.create({
     right: 0,
   },
   listContainer: {
-    paddingHorizontal: 16,
+    // backgroundColor: "#fafafa",
+    padding: 16,
   },
   listItem: {
+    backgroundColor: "#fff",
+    borderColor: "#ddd",
+    borderRadius: 8,
+    borderWidth: 1,
     paddingVertical: 16,
+    paddingHorizontal: 16,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
   },
   listItemSeparator: {
-    borderColor: "#ddd",
-    borderWidth: 1,
+    // borderColor: "#ddd",
+    // borderWidth: 1,
+    marginVertical: 8,
   },
   footer: {
-    backgroundColor: "red",
-    padding: 16,
+    backgroundColor: "black",
+    borderColor: "#eee",
+    borderTopWidth: 1,
+    paddingVertical: 8,
+    paddingHorizontal: 16,
   },
   footerWrapper: {
     flex: 1,
@@ -173,5 +200,11 @@ const s = StyleSheet.create({
     position: "absolute",
     top: 8,
     left: 10,
+  },
+  footerIconRight: {
+    color: "#999",
+    position: "absolute",
+    top: 8,
+    right: 10,
   },
 });

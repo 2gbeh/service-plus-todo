@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://serviceplusconnect.com" target="blank">
-    <img src="./assets/images/icon.png" width="160px" alt="Logo" />
+    <img src="./assets/images/icon.png" width="100px" alt="Logo" />
   </a>
 </p>
 
