@@ -70,32 +70,22 @@ export default function HomeScreen() {
         </View>
       </View>
       {/* NAV */}
-      <View style={s.nav}>
-        <View style={s.tabs}>
-          <View style={s.tabActive}>
-            <Text style={s.tabActiveText}>All</Text>
-          </View>
-          <View style={s.tab}>
-            <Text style={s.tabText}>Completed</Text>
-          </View>
-        </View>
-        {/* TOTALED */}
-        <Text style={{ fontWeight: 600 }}>Total {todos?.length}</Text>
-      </View>
+
       {/* MAIN */}
       <FlatList
         data={todos}
         keyExtractor={(item) => String(item.id)}
         renderItem={({ item, index }) => (
           <View style={s.listItem}>
-            <View style={{ flex: 1 }}>
-              <Text>
+            <View style={{ flex: 1, rowGap: 4 }}>
+              <Text style={{ fontWeight: 600, fontSize: 16 }}>
                 {/* {index + 1}.  */}
                 {item.title}
               </Text>
-              <Text style={{ fontSize: 12, color: "#555" }}>
+              <Text style={{ fontSize: 14, color: "#555" }}>
                 Created{" "}
                 {[
+                  format(new Date(), "h:mm a"),
                   format(new Date(), "h:mm a"),
                   "Yesterday",
                   "Yesterday",
@@ -107,6 +97,22 @@ export default function HomeScreen() {
           </View>
         )}
         ItemSeparatorComponent={() => <View style={s.listItemSeparator} />}
+        ListHeaderComponent={() => (
+          <View style={s.nav}>
+            <View style={s.tabs}>
+              <View style={s.tabActive}>
+                <Text style={s.tabActiveText}>All</Text>
+              </View>
+              <View style={s.tab}>
+                <Text style={s.tabText}>Completed</Text>
+              </View>
+            </View>
+            {/* TOTALED */}
+            <Text style={{ fontWeight: 600, fontSize: 16, color: "#555" }}>
+              Total {todos?.length}
+            </Text>
+          </View>
+        )}
         contentContainerStyle={s.listContainer}
       />
       {/* FOOTER */}
@@ -128,7 +134,7 @@ export default function HomeScreen() {
 const s = StyleSheet.create({
   _: {},
   container: {
-    backgroundColor: "#fafafa",
+    backgroundColor: "#fff",
     flex: 1,
   },
   content: {
@@ -137,7 +143,10 @@ const s = StyleSheet.create({
   },
   appBar: {
     // backgroundColor: "black",
+    borderColor: "#ddd",
+    borderBottomWidth: 1,
     padding: 16,
+
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
@@ -185,7 +194,8 @@ const s = StyleSheet.create({
     right: 0,
   },
   nav: {
-    paddingHorizontal: 16,
+    // paddingHorizontal: 16,
+    paddingBottom: 16,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
@@ -197,26 +207,26 @@ const s = StyleSheet.create({
   },
   tab: {
     backgroundColor: "#ddd",
-    paddingVertical: 4,
-    paddingHorizontal: 12,
+    paddingVertical: 8,
+    paddingHorizontal: 14,
     borderRadius: 100,
   },
   tabText: {
     color: "#555",
-    fontSize: 12,
+    fontSize: 14,
   },
   tabActive: {
     backgroundColor: "#000",
-    paddingVertical: 4,
-    paddingHorizontal: 12,
+    paddingVertical: 8,
+    paddingHorizontal: 14,
     borderRadius: 100,
   },
   tabActiveText: {
     color: "#fff",
-    fontSize: 12,
+    fontSize: 14,
   },
   listContainer: {
-    // backgroundColor: "#fafafa",
+    backgroundColor: "#fafafa",
     padding: 16,
   },
   listItem: {
@@ -227,8 +237,9 @@ const s = StyleSheet.create({
     paddingVertical: 16,
     paddingHorizontal: 16,
     flexDirection: "row",
-    // alignItems: "center",
+    alignItems: "flex-start",
     justifyContent: "space-between",
+    columnGap: 16,
   },
   listItemSeparator: {
     // borderColor: "#ddd",
