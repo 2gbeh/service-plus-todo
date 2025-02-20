@@ -75,6 +75,22 @@ export default function HomeScreen() {
       <FlatList
         data={todos}
         keyExtractor={(item) => String(item.id)}
+        ListHeaderComponent={() => (
+          <View style={s.nav}>
+            <View style={s.tabs}>
+              <View style={s.tabActive}>
+                <Text style={s.tabActiveText}>All</Text>
+              </View>
+              <View style={s.tab}>
+                <Text style={s.tabText}>Completed</Text>
+              </View>
+            </View>
+            {/* TOTALED */}
+            <Text style={{ fontWeight: 600, fontSize: 16, color: "#555" }}>
+              Total {todos?.length - 10}
+            </Text>
+          </View>
+        )}
         renderItem={({ item, index }) => (
           <View style={s.listItem}>
             <View style={{ flex: 1, rowGap: 4 }}>
@@ -97,22 +113,6 @@ export default function HomeScreen() {
           </View>
         )}
         ItemSeparatorComponent={() => <View style={s.listItemSeparator} />}
-        ListHeaderComponent={() => (
-          <View style={s.nav}>
-            <View style={s.tabs}>
-              <View style={s.tabActive}>
-                <Text style={s.tabActiveText}>All</Text>
-              </View>
-              <View style={s.tab}>
-                <Text style={s.tabText}>Completed</Text>
-              </View>
-            </View>
-            {/* TOTALED */}
-            <Text style={{ fontWeight: 600, fontSize: 16, color: "#555" }}>
-              Total {todos?.length}
-            </Text>
-          </View>
-        )}
         contentContainerStyle={s.listContainer}
       />
       {/* FOOTER */}

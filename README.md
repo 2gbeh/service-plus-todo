@@ -42,4 +42,4 @@ coming soon
 
 ## Screenshots
 
-![Social Preview](./assets/social-preview.png)
+![Social Preview](./assets/screenshots/home.png)
