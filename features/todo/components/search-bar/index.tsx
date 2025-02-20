@@ -2,6 +2,7 @@ import React from "react";
 import { View, TextInput } from "react-native";
 //
 import { SearchIcon } from "@/constants/ICON";
+import { COLOR } from "@/constants/COLOR";
 import { searchBarStyles as s } from "./styles";
 
 type PropsType = {};
@@ -15,7 +16,7 @@ const SearchBar: React.FC<PropsType> = () => {
       <TextInput
         style={s.input}
         placeholder="Search ( / )"
-        placeholderTextColor="#888"
+        placeholderTextColor={COLOR.muted}
       />
     </View>
   );

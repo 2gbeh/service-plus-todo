@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import { COLOR } from "@/constants/COLOR";
+import { flexStyles } from "@/styles/flex.styles";
 
 export const footerStyles = {
   _: {},
@@ -10,9 +11,11 @@ export const footerStyles = {
       borderTopWidth: 1,
       paddingVertical: 16,
       paddingHorizontal: 16,
+      ...flexStyles.flexRowCenterBetween,
+      columnGap: 8,
     },
     wrapper: {
-      // flex: 1,
+      flex: 1,
     },
     input: {
       backgroundColor: COLOR.white,

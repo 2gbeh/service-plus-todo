@@ -116,7 +116,7 @@ const s = StyleSheet.create({
     fontSize: 14,
   },
   tabActive: {
-    backgroundColor: "#000",
+    backgroundColor: "#111827",
     paddingVertical: 8,
     paddingHorizontal: 14,
     borderRadius: 100,

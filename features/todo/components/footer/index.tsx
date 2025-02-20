@@ -1,7 +1,8 @@
 import React from "react";
 import { View, TextInput } from "react-native";
 //
-import { MoodOutlineIcon, SendOutlineIcon } from "@/constants/ICON";
+import { MoodOutlineIcon, SendIcon } from "@/constants/ICON";
+import { COLOR } from "@/constants/COLOR";
 import { footerStyles as s } from "./styles";
 
 type PropsType = {};
@@ -15,11 +16,11 @@ const Footer: React.FC<PropsType> = () => {
         <MoodOutlineIcon style={s.icon().transform} />
         <TextInput
           style={s.static.input}
-          placeholder="Add task"
-          placeholderTextColor="#888"
+          placeholder="Enter task"
+          placeholderTextColor={COLOR.muted}
         />
-        <SendOutlineIcon style={s.icon(true).transform} />
       </View>
+        <SendIcon color={COLOR.white} />
     </View>
   );
 };
