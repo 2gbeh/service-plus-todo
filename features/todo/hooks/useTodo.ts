@@ -1,12 +1,6 @@
 import { useEffect, useState } from "react";
 import fakeTodos from "@/data/fakeTodos.json";
-
-interface TodoEntity {
-  userId: number;
-  id: number;
-  title: string;
-  completed: boolean;
-}
+import { TodoEntity } from "../utils/todo.types";
 
 export function useTodo() {
   const [loading, setLoading] = useState(true);

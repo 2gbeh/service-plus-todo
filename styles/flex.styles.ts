@@ -14,4 +14,9 @@ export const flexStyles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
   },
+  flexRowStartBetween: {
+    flexDirection: "row",
+    alignItems: "flex-start",
+    justifyContent: "space-between",
+  },
 });

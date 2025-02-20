@@ -1,7 +1,8 @@
 export const COLOR = {
   null: "transparent",
-  white: "#fff",
   black: "#111827",
+  white: "#fff",
+  offWhite: "#fafafa",
   border: "#ddd",
   icon: "#999",
   subText: "#555",
