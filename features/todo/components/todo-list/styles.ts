@@ -14,6 +14,7 @@ export const todoListStyles = {
       rowGap: 4,
     },
     title: {
+      color: COLOR.black,
       fontWeight: 600,
       fontSize: 16,
     },

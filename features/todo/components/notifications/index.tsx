@@ -2,6 +2,7 @@ import React from "react";
 import { View } from "react-native";
 //
 import { NotificationsIcon } from "@/constants/ICON";
+import { COLOR } from "@/constants/COLOR";
 import { notificationsStyles as s } from "./styles";
 
 type PropsType = {};
@@ -12,7 +13,7 @@ const Notifications: React.FC<PropsType> = () => {
   return (
     <View style={s.container}>
       <View style={s.wrapper}>
-        <NotificationsIcon />
+        <NotificationsIcon color={COLOR.black} />
         <View style={s.indicator} />
       </View>
     </View>

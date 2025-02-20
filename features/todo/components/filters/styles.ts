@@ -6,14 +6,22 @@ export const filtersStyles = {
   _: {},
   static: StyleSheet.create({
     container: {
-      paddingBottom: 16,
-      ...flexStyles.flexRowCenterBetween
+      rowGap: 16,
     },
     tabs: {
       ...flexStyles.flexRowCenter,
       columnGap: 8,
     },
-    totaled: {
+    sectionHeader: {
+      marginBottom: 16,
+      ...flexStyles.flexRowCenterBetween,
+    },
+    sectionHeading: {
+      color: COLOR.black,
+      fontWeight: 600,
+      fontSize: 16,
+    },
+    sectionSubText: {
       color: COLOR.subText,
       fontWeight: 600,
       fontSize: 14,

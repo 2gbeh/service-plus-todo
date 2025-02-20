@@ -1,6 +1,5 @@
 import React from "react";
 import { View, Text, FlatList } from "react-native";
-import { format } from "date-fns";
 //
 import Filters from "../filters";
 import { DeleteOutlineIcon, CloseIcon } from "@/constants/ICON";

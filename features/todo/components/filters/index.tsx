@@ -18,8 +18,10 @@ const Filters: React.FC<PropsType> = ({ total = 0 }) => {
           <Text style={s.tabText().transform}>Completed</Text>
         </View>
       </View>
-      {/* TOTALED */}
-      <Text style={s.static.totaled}>Total {total}</Text>
+      <View style={s.static.sectionHeader}>
+        <Text style={s.static.sectionHeading}>Recent todos</Text>
+        <Text style={s.static.sectionSubText}>Total {total}</Text>
+      </View>
     </View>
   );
 };
