@@ -5,9 +5,8 @@ import { format } from "date-fns";
 import { DeleteOutlineIcon } from "@/constants/ICON";
 import { COLOR } from "@/constants/COLOR";
 import { flexStyles } from "@/styles/flex.styles";
-// 
-import { useTodo, SearchBar, Notifications, Footer } from "@/features/todo";
-
+//
+import { useTodo, SearchBar, Notifications, Filters, Footer } from "@/features/todo";
 
 export default function HomeScreen() {
   const { todos } = useTodo();
@@ -25,22 +24,7 @@ export default function HomeScreen() {
       <FlatList
         data={todos}
         keyExtractor={(item) => String(item.id)}
-        ListHeaderComponent={() => (
-          <View style={s.nav}>
-            <View style={s.tabs}>
-              <View style={s.tabActive}>
-                <Text style={s.tabActiveText}>All</Text>
-              </View>
-              <View style={s.tab}>
-                <Text style={s.tabText}>Completed</Text>
-              </View>
-            </View>
-            {/* TOTALED */}
-            <Text style={{ fontWeight: 600, fontSize: 16, color: "#555" }}>
-              Total {todos?.length}
-            </Text>
-          </View>
-        )}
+        ListHeaderComponent={<Filters total={todos?.length} />}
         renderItem={({ item, index }) => (
           <View style={s.listItem}>
             <View style={{ flex: 1, rowGap: 4 }}>
@@ -92,38 +76,6 @@ const s = StyleSheet.create({
     borderRadius: 8,
     height: 40,
     width: 40,
-  },
-  nav: {
-    // paddingHorizontal: 16,
-    paddingBottom: 16,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
-  tabs: {
-    flexDirection: "row",
-    alignItems: "center",
-    columnGap: 8,
-  },
-  tab: {
-    backgroundColor: "#ddd",
-    paddingVertical: 8,
-    paddingHorizontal: 14,
-    borderRadius: 100,
-  },
-  tabText: {
-    color: "#555",
-    fontSize: 14,
-  },
-  tabActive: {
-    backgroundColor: "#111827",
-    paddingVertical: 8,
-    paddingHorizontal: 14,
-    borderRadius: 100,
-  },
-  tabActiveText: {
-    color: "#fff",
-    fontSize: 14,
   },
   listContainer: {
     backgroundColor: "#fafafa",

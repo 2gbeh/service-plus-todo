@@ -17,10 +17,10 @@ const Footer: React.FC<PropsType> = () => {
         <TextInput
           style={s.static.input}
           placeholder="Enter task"
-          placeholderTextColor={COLOR.muted}
+          placeholderTextColor={COLOR.mutedText}
         />
       </View>
-        <SendIcon color={COLOR.white} />
+      <SendIcon color={COLOR.white} />
     </View>
   );
 };

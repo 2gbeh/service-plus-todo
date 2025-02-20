@@ -16,7 +16,7 @@ const SearchBar: React.FC<PropsType> = () => {
       <TextInput
         style={s.input}
         placeholder="Search ( / )"
-        placeholderTextColor={COLOR.muted}
+        placeholderTextColor={COLOR.mutedText}
       />
     </View>
   );

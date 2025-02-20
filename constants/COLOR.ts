@@ -4,5 +4,7 @@ export const COLOR = {
   black: "#111827",
   border: "#ddd",
   icon: "#999",
-  muted: "#888",
+  subText: "#555",
+  mutedText: "#888",
+  mutedButton: "#ddd",
 } as const;
