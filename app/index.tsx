@@ -1,23 +1,16 @@
-import { useEffect, useState } from "react";
 import { StyleSheet, Image, View, Text, FlatList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { format } from "date-fns";
 //
 import { DeleteOutlineIcon } from "@/constants/ICON";
-import fakeTodos from "@/data/fakeTodos.json";
-import { SearchBar, Notifications, Footer } from "@/features/todo";
 import { COLOR } from "@/constants/COLOR";
 import { flexStyles } from "@/styles/flex.styles";
+// 
+import { useTodo, SearchBar, Notifications, Footer } from "@/features/todo";
 
-interface TodoEntity {
-  userId: number;
-  id: number;
-  title: string;
-  completed: boolean;
-}
 
 export default function HomeScreen() {
-
+  const { todos } = useTodo();
   console.log("🚀 ~ HomeScreen", todos);
   // RENDER
   return (

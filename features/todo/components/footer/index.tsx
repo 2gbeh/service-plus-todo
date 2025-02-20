@@ -10,15 +10,15 @@ const Footer: React.FC<PropsType> = () => {
   console.log("🚀 ~ Footer");
   // RENDER
   return (
-    <View style={s.container}>
-      <View style={s.wrapper}>
-        <MoodOutlineIcon style={s.footerIcon} />
+    <View style={s.static.container}>
+      <View style={s.static.wrapper}>
+        <MoodOutlineIcon style={s.icon().transform} />
         <TextInput
-          style={s.input}
+          style={s.static.input}
           placeholder="Add task"
           placeholderTextColor="#888"
         />
-        <SendOutlineIcon style={s.footerIconRight} />
+        <SendOutlineIcon style={s.icon(true).transform} />
       </View>
     </View>
   );
