@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, FlatList } from "react-native";
+import { View, Text, FlatList, Pressable } from "react-native";
 //
 import { useTodoContext } from "@/context/TodoContext";
 import { DeleteOutlineIcon, SearchActivityIcon } from "@/constants/ICON";
@@ -10,7 +10,7 @@ import { todoListStyles as s } from "./styles";
 type PropsType = {};
 
 const TodoList: React.FC<PropsType> = () => {
-  const { todos } = useTodoContext();
+  const { todos, deleteTaskMutation, deleting, deleted } = useTodoContext();
   console.log("🚀 ~ TodoList", todos);
   // RENDER
   return (
@@ -19,7 +19,17 @@ const TodoList: React.FC<PropsType> = () => {
       keyExtractor={(item) => String(item.id)}
       ListEmptyComponent={renderNoData}
       ListHeaderComponent={() => renderListHeader(todos?.length)}
-      renderItem={renderListItem}
+      renderItem={({ item, index }) => (
+        <View style={s.card().transform}>
+          <View style={s.static.cardWrapper}>
+            <Text style={s.static.title}>{item.task}</Text>
+            <Text style={s.static.subtitle}>Created {item.created_at}</Text>
+          </View>
+          <Pressable onPress={() => deleteTaskMutation(item.id)}>
+            <DeleteOutlineIcon width={18} color={COLOR.icon} />
+          </Pressable>
+        </View>
+      )}
       ItemSeparatorComponent={() => <View style={s.static.separator} />}
       contentContainerStyle={s.static.container}
     />
@@ -39,21 +49,5 @@ const renderListHeader = (total: number = 0) => (
   <View style={s.static.header}>
     <Text style={s.static.heading}>Recent tasks</Text>
     <Text style={s.static.total}>Total {total}</Text>
-  </View>
-);
-
-const renderListItem = ({
-  item,
-  index,
-}: {
-  item: TodoEntity;
-  index: string | number;
-}) => (
-  <View style={s.card().transform}>
-    <View style={s.static.cardWrapper}>
-      <Text style={s.static.title}>{item.task}</Text>
-      <Text style={s.static.subtitle}>Created {item.created_at}</Text>
-    </View>
-    <DeleteOutlineIcon width={18} color={COLOR.icon} />
   </View>
 );
