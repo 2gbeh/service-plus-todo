@@ -3,7 +3,6 @@ import { StyleSheet, Image, View, Text, FlatList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { format } from "date-fns";
 //
-import Footer from "@/features/todo/components/footer";
 import { DeleteOutlineIcon } from "@/constants/ICON";
 import fakeTodos from "@/data/fakeTodos.json";
 import { SearchBar, Notifications, Footer } from "@/features/todo";
@@ -18,28 +17,13 @@ interface TodoEntity {
 }
 
 export default function HomeScreen() {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<unknown>(null);
-  const [todos, setTodos] = useState<TodoEntity[] | undefined>(fakeTodos);
-  async function getTodosQuery() {
-    const url = process.env.EXPO_PUBLIC_API_URL + "/todos";
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => setTodos(data))
-      .catch((error) => setError(error))
-      .finally(() => {
-        setLoading(false);
-      });
-  }
-  useEffect(() => {
-    // getTodosQuery();
-  }, []);
+
   console.log("🚀 ~ HomeScreen", todos);
   // RENDER
   return (
     <SafeAreaView style={s.container}>
       {/* HEADER */}
-      <View style={s.appBar}>
+      <View style={s.header}>
         <Image source={require("@/assets/images/icon.png")} style={s.logo} />
         <SearchBar />
         <Notifications />

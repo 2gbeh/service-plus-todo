@@ -1,3 +1,4 @@
+import React from "react";
 import { View, TextInput } from "react-native";
 //
 import { MoodOutlineIcon, SendOutlineIcon } from "@/constants/ICON";
