@@ -9,13 +9,14 @@ import {
   useCallback,
   useEffect,
 } from "react";
-import { TodoEntity } from "@/features/todo/utils/todo.types";
+import { TodoEntity, FilterType } from "@/features/todo/utils/todo.types";
 import { mockApiCall } from "@/utils/mockApiCall";
+import mockTodos from "@/data/mockTodos.json";
 
 interface ITodoContext {
   todos: TodoEntity[];
-  pendingTodos: TodoEntity[];
-  doneTodos: TodoEntity[];
+  filter: FilterType;
+  setFilter: Dispatch<SetStateAction<FilterType>>;
   createTaskMutation: (task: string) => void;
   creating: boolean;
   created: boolean;
@@ -39,29 +40,22 @@ export function useTodoContext() {
 export const TodoContextProvider: React.FC<PropsWithChildren> = ({
   children,
 }) => {
-  const [todos, setTodos] = useState<TodoEntity[]>([]);
+  const [todos, setTodos] = useState<TodoEntity[]>(mockTodos);
+  const [filter, setFilter] = useState<FilterType>("all");
   const [creating, setCreating] = useState(false);
   const [created, setCreated] = useState(false);
   const [deleting, setDeleting] = useState(false);
   const [deleted, setDeleted] = useState(false);
-  const pendingTodos = useMemo(
-    () => todos.filter(({ done }) => done === false),
-    [todos]
-  );
-  const doneTodos = useMemo(
-    () => todos.filter(({ done }) => done === true),
-    [todos]
-  );
 
   async function createTaskMutation(task: string) {
     setCreating(true);
     setCreated(false);
     //
-    await mockApiCall();
+    // await mockApiCall();
     const d = new Date();
     const body = {
       id: d.getTime(),
-      done: false,
+      is_done: false,
       created_at: d.toISOString(),
       task,
     };
@@ -75,9 +69,9 @@ export const TodoContextProvider: React.FC<PropsWithChildren> = ({
     setDeleting(true);
     setDeleted(false);
     //
-    await mockApiCall();
+    // await mockApiCall();
     const updatedTodos = todos.map((item) =>
-      item.id === taskId ? { ...item, done: true } : item
+      item.id === taskId ? { ...item, is_done: true } : item
     );
     //
     setTodos(updatedTodos);
@@ -88,8 +82,8 @@ export const TodoContextProvider: React.FC<PropsWithChildren> = ({
   const value = useMemo(
     () => ({
       todos,
-      pendingTodos,
-      doneTodos,
+      filter,
+      setFilter,
       createTaskMutation,
       creating,
       created,
@@ -97,7 +91,7 @@ export const TodoContextProvider: React.FC<PropsWithChildren> = ({
       deleting,
       deleted,
     }),
-    [todos, creating, deleting]
+    [todos, filter, creating, deleting]
   );
 
   console.log("🚀 ~ TodoContextProvider");

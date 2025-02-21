@@ -33,8 +33,13 @@ export const todoListStyles = {
       fontWeight: 600,
       fontSize: 16,
     },
+    subtitleWrapper: {
+      ...flexStyles.flexRowCenter,
+      columnGap: 4,
+    },
     subtitle: {
       color: COLOR.subText,
+      marginTop: -2,
       fontSize: 14,
     },
     separator: {
