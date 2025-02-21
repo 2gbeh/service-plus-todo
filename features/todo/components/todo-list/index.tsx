@@ -1,29 +1,22 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { View, Text, FlatList, Pressable } from "react-native";
 import { capitalize } from "lodash";
 //
-import { useTodoContext } from "@/context/TodoContext";
 import {
   DeleteOutlineIcon,
   SearchActivityIcon,
   ScheduleOutlineIcon,
 } from "@/constants/ICON";
 import { COLOR } from "@/constants/COLOR";
-import { todoListStyles as s } from "./styles";
 import { TodoPipe } from "../../utils/todo.pipe";
+//
+import { useTodoList } from "./hook";
+import { todoListStyles as s } from "./styles";
 
 type PropsType = {};
 
 const TodoList: React.FC<PropsType> = () => {
-  const { todos, filterBy, deleteTaskMutation } =
-    useTodoContext();
-  const filteredTodos = useMemo(
-    () =>
-      todos.filter(({ is_done }) =>
-        filterBy === "completed" ? is_done : !is_done
-      ),
-    [todos, filterBy]
-  );
+  const { filterBy, filteredTodos, deleteTaskMutation } = useTodoList();
   console.log("🚀 ~ TodoList", filteredTodos);
   // RENDER
   return (

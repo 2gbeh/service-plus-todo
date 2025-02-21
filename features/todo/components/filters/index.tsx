@@ -1,15 +1,13 @@
 import React from "react";
 import { View, Text, Pressable } from "react-native";
 //
-import { useTodoContext } from "@/context/TodoContext";
+import { useFilters } from "./hook";
 import { filtersStyles as s } from "./styles";
 
 type PropsType = {};
 
 const Filters: React.FC<PropsType> = () => {
-  const { filterBy, setFilterBy } = useTodoContext();
-  let isAll = filterBy === "all";
-  let isCompleted = filterBy === "completed";
+  const { setFilterBy, isAll, isCompleted } = useFilters();
   console.log("🚀 ~ Filters");
   // RENDER
   return (

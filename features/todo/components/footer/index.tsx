@@ -1,22 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { View, TextInput, Pressable, ActivityIndicator } from "react-native";
 //
-import { useTodoContext } from "@/context/TodoContext";
 import { MoodOutlineIcon, SendIcon } from "@/constants/ICON";
 import { COLOR } from "@/constants/COLOR";
+//
+import { useFooter } from "./hook";
 import { footerStyles as s } from "./styles";
 
 type PropsType = {};
 
 const Footer: React.FC<PropsType> = () => {
-  const { createTaskMutation, creating, created } = useTodoContext();
-  const [task, setTask] = useState<string>("");
-  function handleSubmit() {
-    if (task && task.length >= 3) createTaskMutation(task);
-  }
-  useEffect(() => {
-    if (created) setTask("");
-  }, [created]);
+  const { task, setTask, handleSubmit, creating } = useFooter();
   console.log("🚀 ~ Footer");
   // RENDER
   return (
