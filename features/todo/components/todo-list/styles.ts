@@ -52,7 +52,7 @@ export const todoListStyles = {
     },
     noDataText: {
       color: COLOR.subText,
-      fontSize: 16,
+      // fontSize: 16,
     },
   }),
   card: (pending?: boolean) =>

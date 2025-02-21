@@ -1,5 +1,3 @@
-export { useTodo } from "./hooks/useTodo";
-// 
 export { todoStyles } from "./utils/todo.styles";
 // 
 export { default as Filters } from "./components/filters";

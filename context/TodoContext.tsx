@@ -15,8 +15,8 @@ import mockTodos from "@/data/mockTodos.json";
 
 interface ITodoContext {
   todos: TodoEntity[];
-  filter: FilterType;
-  setFilter: Dispatch<SetStateAction<FilterType>>;
+  filterBy: FilterType;
+  setFilterBy: Dispatch<SetStateAction<FilterType>>;
   createTaskMutation: (task: string) => void;
   creating: boolean;
   created: boolean;
@@ -41,7 +41,7 @@ export const TodoContextProvider: React.FC<PropsWithChildren> = ({
   children,
 }) => {
   const [todos, setTodos] = useState<TodoEntity[]>(mockTodos);
-  const [filter, setFilter] = useState<FilterType>("all");
+  const [filterBy, setFilterBy] = useState<FilterType>("all");
   const [creating, setCreating] = useState(false);
   const [created, setCreated] = useState(false);
   const [deleting, setDeleting] = useState(false);
@@ -50,7 +50,6 @@ export const TodoContextProvider: React.FC<PropsWithChildren> = ({
   async function createTaskMutation(task: string) {
     setCreating(true);
     setCreated(false);
-    //
     // await mockApiCall();
     const d = new Date();
     const body = {
@@ -68,10 +67,9 @@ export const TodoContextProvider: React.FC<PropsWithChildren> = ({
   async function deleteTaskMutation(taskId: number) {
     setDeleting(true);
     setDeleted(false);
-    //
     // await mockApiCall();
     const updatedTodos = todos.map((item) =>
-      item.id === taskId ? { ...item, is_done: true } : item
+      item.id === taskId ? { ...item, is_done: !item.is_done } : item
     );
     //
     setTodos(updatedTodos);
@@ -82,8 +80,8 @@ export const TodoContextProvider: React.FC<PropsWithChildren> = ({
   const value = useMemo(
     () => ({
       todos,
-      filter,
-      setFilter,
+      filterBy,
+      setFilterBy,
       createTaskMutation,
       creating,
       created,
@@ -91,7 +89,7 @@ export const TodoContextProvider: React.FC<PropsWithChildren> = ({
       deleting,
       deleted,
     }),
-    [todos, filter, creating, deleting]
+    [todos, filterBy, creating, deleting]
   );
 
   console.log("🚀 ~ TodoContextProvider");

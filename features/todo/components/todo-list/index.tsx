@@ -1,27 +1,43 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { View, Text, FlatList, Pressable } from "react-native";
+import { capitalize } from "lodash";
 //
 import { useTodoContext } from "@/context/TodoContext";
-import { DeleteOutlineIcon, SearchActivityIcon, ScheduleOutlineIcon} from "@/constants/ICON";
+import {
+  DeleteOutlineIcon,
+  SearchActivityIcon,
+  ScheduleOutlineIcon,
+} from "@/constants/ICON";
 import { COLOR } from "@/constants/COLOR";
-import { TodoEntity } from "../../utils/todo.types";
 import { todoListStyles as s } from "./styles";
 import { TodoPipe } from "../../utils/todo.pipe";
 
 type PropsType = {};
 
 const TodoList: React.FC<PropsType> = () => {
-  const { todos, filter, deleteTaskMutation, deleting, deleted } =
+  const { todos, filterBy, deleteTaskMutation } =
     useTodoContext();
-  console.log("🚀 ~ TodoList", todos);
+  const filteredTodos = useMemo(
+    () =>
+      todos.filter(({ is_done }) =>
+        filterBy === "completed" ? is_done : !is_done
+      ),
+    [todos, filterBy]
+  );
+  console.log("🚀 ~ TodoList", filteredTodos);
   // RENDER
   return (
     <FlatList
-      data={todos}
+      data={filteredTodos}
       keyExtractor={(item) => String(item.id)}
       ListEmptyComponent={renderNoData}
-      ListHeaderComponent={() => renderListHeader(todos?.length)}
-      renderItem={({ item, index }) => {
+      ListHeaderComponent={() => (
+        <View style={s.static.header}>
+          <Text style={s.static.heading}>{capitalize(filterBy)} tasks</Text>
+          <Text style={s.static.total}>Total {filteredTodos.length}</Text>
+        </View>
+      )}
+      renderItem={({ item }) => {
         const transformedItem = TodoPipe.transform(item);
         return (
           <View style={s.card().transform}>
@@ -52,12 +68,5 @@ const renderNoData = () => (
   <View style={s.static.noDataContainer}>
     <SearchActivityIcon color={COLOR.icon} />
     <Text style={s.static.noDataText}>No tasks found</Text>
-  </View>
-);
-
-const renderListHeader = (total: number = 0) => (
-  <View style={s.static.header}>
-    <Text style={s.static.heading}>Recent tasks</Text>
-    <Text style={s.static.total}>Total {total}</Text>
   </View>
 );

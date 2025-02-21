@@ -3,60 +3,36 @@
     "id": 1,
     "task": "Service+ Connect interview - stage 2",
     "is_done": false,
-    "created_at": "2025-02-21T00:00:00.000Z"
+    "created_at": "2025-02-21T14:00:00.000Z"
   },
   {
     "id": 2,
-    "task": "PlateauMed general standup",
+    "task": "Peonyn mobile engineer meeting",
     "is_done": false,
-    "created_at": "2025-02-20T00:00:00.000Z"
+    "created_at": "2025-02-20T16:10:00.000Z"
   },
   {
     "id": 3,
     "task": "Create Todo app with \"swipe to delete\" gesture",
     "is_done": false,
-    "created_at": "2025-02-20T00:00:00.000Z"
+    "created_at": "2025-02-20T03:15:00.000Z"
   },
   {
     "id": 4,
-    "task": "JavaScript \"under the hood\" prep",
+    "task": "JavaScript \"under the hood\" study",
     "is_done": true,
-    "created_at": "2025-02-19T00:00:00.000Z"
+    "created_at": "2025-02-19T16:00:00.000Z"
   },
   {
     "id": 5,
     "task": "Service+ Connect interview - stage 1",
     "is_done": false,
-    "created_at": "2025-02-19T00:00:00.000Z"
+    "created_at": "2025-02-19T14:30:00.000Z"
   },
   {
     "id": 6,
-    "task": "Peonyn principal engineers meeting",
+    "task": "feat(realestay): add login page",
     "is_done": false,
-    "created_at": "1970-01-01T00:00:00.000Z"
-  },
-  {
-    "id": 7,
-    "task": "illo expedita consequatur quia in",
-    "is_done": false,
-    "created_at": "1970-01-01T00:00:00.000Z"
-  },
-  {
-    "id": 8,
-    "task": "quo adipisci enim quam ut ab",
-    "is_done": true,
-    "created_at": "1970-01-01T00:00:00.000Z"
-  },
-  {
-    "id": 9,
-    "task": "molestiae perspiciatis ipsa",
-    "is_done": false,
-    "created_at": "1970-01-01T00:00:00.000Z"
-  },
-  {
-    "id": 10,
-    "task": "illo est ratione doloremque quia maiores aut",
-    "is_done": true,
-    "created_at": "1970-01-01T00:00:00.000Z"
+    "created_at": "2025-02-19T08:00:00.000Z"
   }
 ]
