@@ -5,4 +5,4 @@ export interface TodoEntity {
   created_at: string;
 }
 
-export type FilterType = "all" | "completed"
+export type FilterByType = "all" | "completed";

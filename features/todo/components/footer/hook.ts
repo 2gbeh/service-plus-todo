@@ -3,7 +3,7 @@ import { useTodoContext } from "@/context/TodoContext";
 
 export function useFooter() {
   const { todos, createTaskMutation, creating } = useTodoContext();
-  const [task, setTask] = useState<string>("");
+  const [task, setTask] = useState("");
   //
   const handleSubmit = () => {
     if (task && task.length >= 3) createTaskMutation(task);

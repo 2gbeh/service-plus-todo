@@ -9,14 +9,16 @@ import {
   useCallback,
   useEffect,
 } from "react";
-import { TodoEntity, FilterType } from "@/features/todo/utils/todo.types";
+import { TodoEntity, FilterByType } from "@/features/todo/utils/todo.types";
 import { mockApiCall } from "@/utils/mockApiCall";
 import mockTodos from "@/data/mockTodos.json";
 
 interface ITodoContext {
   todos: TodoEntity[];
-  filterBy: FilterType;
-  setFilterBy: Dispatch<SetStateAction<FilterType>>;
+  searchTerm: string;
+  filterBy: FilterByType;
+  setFilterBy: Dispatch<SetStateAction<FilterByType>>;
+  searchTaskQuery: (searchTerm: string) => void;
   createTaskMutation: (task: string) => void;
   creating: boolean;
   created: boolean;
@@ -41,11 +43,25 @@ export const TodoContextProvider: React.FC<PropsWithChildren> = ({
   children,
 }) => {
   const [todos, setTodos] = useState<TodoEntity[]>(mockTodos);
-  const [filterBy, setFilterBy] = useState<FilterType>("all");
+  // const [todosCopy, setTodosCopy] = useState<TodoEntity[]>(mockTodos);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filterBy, setFilterBy] = useState<FilterByType>("all");
   const [creating, setCreating] = useState(false);
   const [created, setCreated] = useState(false);
   const [deleting, setDeleting] = useState(false);
   const [deleted, setDeleted] = useState(false);
+
+  async function searchTaskQuery(searchTerm: string) {
+    setSearchTerm(searchTerm);
+    if (searchTerm.length > 0) {
+      const searchedTodos = mockTodos.filter(
+        ({ task }) => task.search(new RegExp(searchTerm, "i")) > -1
+      );
+      setTodos(searchedTodos);
+    } else {
+      setTodos(mockTodos);
+    }
+  }
 
   async function createTaskMutation(task: string) {
     setCreating(true);
@@ -62,6 +78,7 @@ export const TodoContextProvider: React.FC<PropsWithChildren> = ({
     setTodos((prev) => [body, ...prev]);
     setCreating(false);
     setCreated(true);
+    setFilterBy("all");
   }
 
   async function deleteTaskMutation(taskId: number) {
@@ -69,7 +86,8 @@ export const TodoContextProvider: React.FC<PropsWithChildren> = ({
     setDeleted(false);
     // await mockApiCall();
     const updatedTodos = todos.map((item) =>
-      item.id === taskId ? { ...item, is_done: !item.is_done } : item
+      // item.id === taskId ? { ...item, is_done: !item.is_done } : item
+      item.id === taskId ? { ...item, is_done: true } : item
     );
     //
     setTodos(updatedTodos);
@@ -80,8 +98,10 @@ export const TodoContextProvider: React.FC<PropsWithChildren> = ({
   const value = useMemo(
     () => ({
       todos,
+      searchTerm,
       filterBy,
       setFilterBy,
+      searchTaskQuery,
       createTaskMutation,
       creating,
       created,
