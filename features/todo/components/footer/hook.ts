@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useTodoContext } from "@/context/TodoContext";
 
 export function useFooter() {
-  const { createTaskMutation, creating, created } = useTodoContext();
+  const { todos, createTaskMutation, creating } = useTodoContext();
   const [task, setTask] = useState<string>("");
   //
   const handleSubmit = () => {
@@ -10,8 +10,8 @@ export function useFooter() {
   };
   //
   useEffect(() => {
-    if (created) setTask("");
-  }, [created]);
+    setTask("");
+  }, [todos]);
 
   return { task, setTask, handleSubmit, creating };
 }

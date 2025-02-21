@@ -89,7 +89,7 @@ export const TodoContextProvider: React.FC<PropsWithChildren> = ({
       deleting,
       deleted,
     }),
-    [todos, filterBy, creating, deleting]
+    [todos, filterBy]
   );
 
   console.log("🚀 ~ TodoContextProvider");
