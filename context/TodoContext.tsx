@@ -15,6 +15,7 @@ import mockTodos from "@/data/mockTodos.json";
 
 interface ITodoContext {
   todos: TodoEntity[];
+  selectedTaskId: number;
   searchTerm: string;
   filterBy: FilterByType;
   setFilterBy: Dispatch<SetStateAction<FilterByType>>;
@@ -43,7 +44,7 @@ export const TodoContextProvider: React.FC<PropsWithChildren> = ({
   children,
 }) => {
   const [todos, setTodos] = useState<TodoEntity[]>(mockTodos);
-  // const [todosCopy, setTodosCopy] = useState<TodoEntity[]>(mockTodos);
+  const [selectedTaskId, setSelectedTaskId] = useState(-1);
   const [searchTerm, setSearchTerm] = useState("");
   const [filterBy, setFilterBy] = useState<FilterByType>("all");
   const [creating, setCreating] = useState(false);
@@ -82,6 +83,7 @@ export const TodoContextProvider: React.FC<PropsWithChildren> = ({
   }
 
   async function deleteTaskMutation(taskId: number) {
+    setSelectedTaskId(taskId);
     setDeleting(true);
     setDeleted(false);
     // await mockApiCall();
@@ -98,6 +100,7 @@ export const TodoContextProvider: React.FC<PropsWithChildren> = ({
   const value = useMemo(
     () => ({
       todos,
+      selectedTaskId,
       searchTerm,
       filterBy,
       setFilterBy,

@@ -2,7 +2,8 @@ import { useMemo } from "react";
 import { useTodoContext } from "@/context/TodoContext";
 
 export function useTodoList() {
-  const { todos, filterBy, deleteTaskMutation } = useTodoContext();
+  const { todos, selectedTaskId, filterBy, deleteTaskMutation } =
+    useTodoContext();
   //
   const filteredTodos = useMemo(
     () =>
@@ -11,6 +12,6 @@ export function useTodoList() {
       ),
     [todos, filterBy]
   );
-  
-  return { filterBy, filteredTodos, deleteTaskMutation };
+
+  return { filteredTodos, selectedTaskId, filterBy, deleteTaskMutation };
 }

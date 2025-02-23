@@ -10,10 +10,6 @@ export const todoListStyles = {
       paddingHorizontal: 16,
       flex: 1,
     },
-    cardWrapper: {
-      flex: 1,
-      rowGap: 4,
-    },
     header: {
       marginBottom: 16,
       ...flexStyles.flexRowCenterBetween,
@@ -42,6 +38,10 @@ export const todoListStyles = {
       marginTop: -2,
       fontSize: 14,
     },
+    rightAction: {
+      ...flexStyles.flexCenterCenter,
+      paddingHorizontal: 16,
+    },
     separator: {
       marginVertical: 8,
     },
@@ -58,13 +58,13 @@ export const todoListStyles = {
   card: (pending?: boolean) =>
     StyleSheet.create({
       transform: {
-        backgroundColor: COLOR.white,
-        borderColor: COLOR.border,
+        backgroundColor: pending ? "#fef2f2" : COLOR.white,
+        borderColor: pending ? "#fca5a5" : COLOR.border,
         borderWidth: 1,
         borderRadius: 8,
         padding: 16,
-        ...flexStyles.flexRowStartBetween,
-        columnGap: 8,
+        ...flexStyles.flexColStartBetween,
+        rowGap: 4,
       },
     }),
 };

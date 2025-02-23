@@ -1,5 +1,6 @@
 import React from "react";
-import { View, Text, FlatList, Pressable } from "react-native";
+import { View, Text, FlatList } from "react-native";
+import ReanimatedSwipeable from "react-native-gesture-handler/ReanimatedSwipeable";
 import { capitalize } from "lodash";
 //
 import {
@@ -16,7 +17,8 @@ import { todoListStyles as s } from "./styles";
 type PropsType = {};
 
 const TodoList: React.FC<PropsType> = () => {
-  const { filterBy, filteredTodos, deleteTaskMutation } = useTodoList();
+  const { filteredTodos, selectedTaskId, filterBy, deleteTaskMutation } =
+    useTodoList();
   console.log("🚀 ~ TodoList", filteredTodos);
   // RENDER
   return (
@@ -33,8 +35,15 @@ const TodoList: React.FC<PropsType> = () => {
       renderItem={({ item }) => {
         const transformedItem = TodoPipe.transform(item);
         return (
-          <View style={s.card().transform}>
-            <View style={s.static.cardWrapper}>
+          <ReanimatedSwipeable
+            renderRightActions={() => (
+              <View style={s.static.rightAction}>
+                <DeleteOutlineIcon width={24} color={COLOR.error} />
+              </View>
+            )}
+            onSwipeableOpen={() => deleteTaskMutation(item.id)}
+          >
+            <View style={s.card(item.id === selectedTaskId).transform}>
               <Text style={s.static.title}>{item.task}</Text>
               <View style={s.static.subtitleWrapper}>
                 <ScheduleOutlineIcon width={18} color={COLOR.icon} />
@@ -43,10 +52,7 @@ const TodoList: React.FC<PropsType> = () => {
                 </Text>
               </View>
             </View>
-            <Pressable onPress={() => deleteTaskMutation(item.id)}>
-              <DeleteOutlineIcon width={18} color={COLOR.icon} />
-            </Pressable>
-          </View>
+          </ReanimatedSwipeable>
         );
       }}
       ItemSeparatorComponent={() => <View style={s.static.separator} />}
